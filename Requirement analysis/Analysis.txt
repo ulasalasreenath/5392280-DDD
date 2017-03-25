@@ -1,0 +1,178 @@
+1. CQ Specialist Medical center (CQMC) 
+	a. contains Medical specialists
+
+2. Patients book their appointments through a telephone call or personal visits.
+
+
+
+Database name can be CQMC
+
+doubts:
+1. during consultation, a speicialist may conduct various medical tests and procedures on the patient. may prescribe multiple prescriptions to the patinet. may prescribe multiple prescriptions to the patient. 
+
+
+What we need to submit?
+
+1. ER Diagram
+2. Perform logical design to produce appropriate 3NF relations. 
+3. you must include your assumptions - for example: it is assumed that each customer must have at least one order because it is assumed that the business does not record customer details until the customer places an order.
+4. provide assumptions and business rules relevant to your ERD
+
+You should submit a Microsoft Word document containing:
+•	A copy of your ERD.
+•	A list of business rules and assumptions including their justifications.
+•	logical design in 3NF Relations
+Your document should contain appropriate identifying information (your student number, name, unit number, etc.) and should contain appropriate headings for each section.
+
+Harward APA reference style
+
+Tables we may need:
+
+1. Medical Specialists (atleast 3)
+	a. specialist_id (PK)
+	b. years_of_experience
+	c. specialist_first_name
+	d. specialist_middle_name
+	e. specialist_last_name
+	f. date_of_birth
+	g. home_phone
+	i. work_phone
+	j. address
+	
+	specialist_Qualifications
+	a. Spcialist_id (FK)
+	b. Qualification_Id (FK)
+
+	Qualifications (atleast 3)
+	a. Qualification_id (PK)
+	b. Qualification_Name
+	c. Qualificaiton_description
+
+2. Medical Speicialist _ Qualifications (is this table required? or can we keep in Medical Specialists table?) - a medical speicialist can have multiple qualifications. 
+
+2. Patients (atleast 3)
+	a. patient_first_name
+	b. patient_middle_name
+	c. patient_last_name
+	d. gender
+	e. Patient ID
+	f. patient type (Pensioner, Veteran)
+	g. date_of_birth
+	h. home_phone
+	i. work_phone
+	j. address
+
+3. Sub table Patient's medical history 
+	a. Past sergeris undertaken (take different table)
+		Patient_Surgeries
+			a. Patient_id (FK)
+			b. Surgery_id (PK)
+			c. Surgery_description
+			d. surgery_cost
+			e. specialist_id (FK)
+			f. start_date
+			g. end_date
+
+	b. current medications (medicines and dosages) (take different table)
+		patient_medications
+			a. patient_id(FK)
+			b. diagonis_id
+			c. medicine_id (FK)
+
+		Diagnoses
+			a. diagnosis_id (PK)
+			b. patinet_id (FK)
+			c. specialist_id (FK)	
+			d. date_performed
+
+		Medicines
+
+			a. medicine_id
+			b. medicine_name
+			c. medicine_description
+			d. medicine_cost
+
+	c. medication-allergies (take different table)
+
+			a. Patient_id (FK)
+			b. medicine_id  (FK)
+
+4. Appointments (Appointment by telephone call or by personal visits to the center, or by GPs (General pracitioners))
+	a. appointment_id (PK)
+	a. appointment type - Special/Normal
+	b. referral_id (FK)
+	c. appointment_type - Consultation, Biopsy, Excision, Laser
+	d. patient_id
+	e. specialist_id
+5. Appointments_Refferal
+	a. referral_id (PK)
+	a. gp_id (FK)
+	b. date of referral 
+6. General Physician
+	a. Unique Medical Provider Number
+	b. gp_first_name
+	c. gp_middle_name
+	d. gp_last_name
+	e. date_of_birth
+	g. home_phone
+	h. work_phone
+
+7. Medical_Test
+	a. Test_id (PK)
+	b. specialist_id (FK)
+	c. patient_id (FK)
+	d. test_name 
+	e. test_cost
+	f. appointment_id (FK)
+
+
+8. Medical_Procedures
+	a. Procudere_Id (PK)
+	b. specialist_id (FK)
+	c. patient_id (FK)
+	d. procedure_name 
+	e. procedure_cost
+	f. appointment_id (FK)
+
+9. Patient_Prescriptions. 
+	a. appointment_id (FK)
+	b. patient_id (FK)
+	c. specialist_id (PK)
+	d. prescription_id 
+
+10. mecicine_presciption
+	a. prescription_id (FK)
+	b. medicine_id (FK)
+
+11. Charges
+
+	a. Type (PK)
+	b. Fee 
+	c. description
+	
+12. Payments
+	
+	a. payment_id (PK)
+	b. appoint_id (FK)
+	c. amount_to_pay
+	d. discount 
+
+
+Prerequisites:
+
+1. atleast 2 and atmost 7 relevant attributes for each entity. 
+2. Your ERD must
+	a. all necessary entities, attributes & relationships
+	b. show identifiers/identifying attributes as necessary
+	c. show multi-valued attributes, if any
+	d. show participation & cardinality
+	e. show associative entities, if appropriate
+	f. show weak entities, if any
+
+Create Logical Design:
+
+1. Customer (CustomerId, customerName, Street, Suburb, State, PostCode, Email)
+
+Invoice (InvoiceNumber, invoiceDate, Total, CustomerId)
+
+foreign key (CustomerId) references Customer(CustomerId)
